@@ -1,0 +1,6 @@
+/node_modules/
+/.vscode/
+/cache/
+
+.DS_Store
+package-lock.json
