@@ -13,9 +13,9 @@ describe("force", function() {
         console.log(ethers.utils.formatEther(balance));
         expect(balance).to.gt(0);
 
-        const targetAddr = "0x1AeF6c9628c4064A9E2E1EE367C3e47fDFe3aAD8";
+        const targetAddr = "0x1ECD653Fca622112616427cdB45Fe3B879019612";
 
-        const proxyFactory = await ethers.getContractFactory("Force");
+        const proxyFactory = await ethers.getContractFactory("ForceProxy");
         const proxyCont = await proxyFactory.deploy(targetAddr, { value: ethers.utils.parseEther("0.0005") });
         await eoa.provider!.waitForTransaction(proxyCont.deployTransaction.hash);
         
