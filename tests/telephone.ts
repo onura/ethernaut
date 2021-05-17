@@ -17,7 +17,7 @@ describe("telephone", function() {
         const targetABI = [
             "function owner() public view returns (address)",
         ]
-        const targetAddr = "0x94BfA71EbeEa71bfad6062c10489F7db4771374E";
+        const targetAddr = "0x8936e5F25875b9211feA34C9c932168e5ca706B3";
 
         const proxyFactory = await ethers.getContractFactory("TelephoneProxy");
         const proxyCont = await proxyFactory.deploy(targetAddr);
