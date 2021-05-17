@@ -19,6 +19,7 @@ describe("fallback", function() {
             "function contribute() public payable",
             "function fallback() external payable",
             "function owner() public view returns (address)",
+            "function withdraw() public",
         ]
         const targetAddr = "0x50B3608917C095a17F3fB02E2E0eEd7E6497Fb33";
 
@@ -40,5 +41,12 @@ describe("fallback", function() {
 
         let owner = await target.owner();
         expect(owner).to.eq(eoa.address);
+
+        tx = await target.withdraw();
+        await tx.wait();
+        console.log(tx);
+
+        let targetBalance = await eoa.provider!.getBalance(target.address);
+        expect(targetBalance).to.eq(0);
     });
 });
