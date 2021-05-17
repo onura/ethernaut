@@ -27,6 +27,7 @@ describe("delegate", function() {
         const IDelegate = new utils.Interface(delegateABI);
         const msgData = IDelegate.encodeFunctionData('pwn', []);
 
+        // transaction with data falls in fallback function
         let tx = await eoa.sendTransaction({
             from: eoa.address,
             to: targetCont.address,
