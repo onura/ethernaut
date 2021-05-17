@@ -17,7 +17,7 @@ describe("coin flip", function() {
         const targetABI = [
             "function consecutiveWins() public view returns (uint256)",
         ]
-        const targetAddr = "0x5513cFa28772F9b54f2F9222D0237B39feAD3EE7";
+        const targetAddr = "0xE91b8e6ea0DabE808Fc9B412875185D546a5c8e2";
 
         const proxyFactory = await ethers.getContractFactory("CoinFlipProxy");
         const proxyCont = await proxyFactory.deploy(targetAddr);
