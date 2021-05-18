@@ -17,6 +17,13 @@ describe("recovery", function() {
         const targetABI = [
             "function destroy(address payable _to) public",
         ]
+
+        /*
+         * I found the addres on etherscan.
+         * It is really easy in that way, I think challenge author mean some other solution
+         * that does not involve etherscan. However, it works. ;)
+         */ 
+        
         const targetAddr = "0x0285223E36Ebf51A1dfd4B0aCD1C6a75b2Ef9ad4";
 
         let targetCont = new ethers.Contract(targetAddr, targetABI, ethers.getDefaultProvider());
