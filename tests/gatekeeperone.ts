@@ -18,7 +18,7 @@ describe("gatekeeperone", function() {
             "function entrant() public view returns (address)",
         ];
 
-        const targetAddr = "0x184C2B49205eA83630Cf1075de72A63A808b23F3";
+        const targetAddr = "0x18C3ecc88F5d3dE43266FaCc2B49DAcF6D6BAa52";
         let targetCont = new ethers.Contract(targetAddr, targetABI, ethers.getDefaultProvider());
         targetCont = targetCont.connect(eoa);
         
@@ -26,7 +26,7 @@ describe("gatekeeperone", function() {
         const proxyFactory = await ethers.getContractFactory("GKOProxy");
         const proxyCont = await proxyFactory.deploy(targetAddr);
         await eoa.provider!.waitForTransaction(proxyCont.deployTransaction.hash);
-        console.log("ReProxy deployed at: " + proxyCont.address);
+        console.log("GKOProxy deployed at: " + proxyCont.address);
 
         /*
         * gatetwo
